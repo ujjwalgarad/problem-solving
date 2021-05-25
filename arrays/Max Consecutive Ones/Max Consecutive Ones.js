@@ -23,5 +23,4 @@ function countConsOnes(input){
     return prevCount > curCount ? prevCount : curCount; 
 }
 
-let input = [0,0,1,1,1,0,0];
-console.log(countConsOnes(input));
+module.exports = countConsOnes;

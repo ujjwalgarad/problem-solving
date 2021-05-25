@@ -1,0 +1,22 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ujjwalgarad/problem-solving.git"
+  },
+  "author": "ujjwal garad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ujjwalgarad/problem-solving/issues"
+  },
+  "homepage": "https://github.com/ujjwalgarad/problem-solving#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
