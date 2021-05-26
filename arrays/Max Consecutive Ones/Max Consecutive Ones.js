@@ -7,12 +7,12 @@
 // Output: 2
 
 function countConsOnes(input){
-    let prevCount = 0, curCount = 0;
+    let prevMax = 0, curCount = 0;
 
     input.map(num =>{
         if(num == 0){
-            if(curCount > prevCount){
-                prevCount = curCount;
+            if(curCount > prevMax){
+                prevMax = curCount;
             }
             curCount = 0;
         }else{
@@ -20,7 +20,7 @@ function countConsOnes(input){
         }
     });
 
-    return prevCount > curCount ? prevCount : curCount; 
+    return prevMax > curCount ? prevMax : curCount; 
 }
 
 module.exports = countConsOnes;
