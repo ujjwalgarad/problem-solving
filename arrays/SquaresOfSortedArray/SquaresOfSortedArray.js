@@ -8,7 +8,7 @@
 // Input: nums = [-7,-3,2,3,11]
 // Output: [4,9,9,49,121]
 
-let myFunction = input =>{
+const myFunction = input =>{
 
     let left = 0, 
         right = loc = input.length -1,
