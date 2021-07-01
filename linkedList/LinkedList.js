@@ -1,4 +1,4 @@
-import { Node } from './Node.js';
+const Node = require('./Node');
 
 class LinkedList{
     constructor(){
@@ -26,14 +26,14 @@ class LinkedList{
     addAtHead(val){
         let node = new Node(val);
         node.next = this.head;
-        this.head - node;
+        this.head = node;
     }
 
     addAtTail(val){
         let node = new Node(val);
         let pointer = this.head;
 
-        while(!pointer.next){
+        while(pointer.next){
             pointer = pointer.next;
         }
 
@@ -41,21 +41,53 @@ class LinkedList{
     }
 
     addAtIndex(index, val){
+        if(index == 0){
+            this.addAtHead(val);
+            return;
+        }
+
         let node = new Node(val);
-        let pointer = this.head;
-        let next = pointer.next;
+        let prev = this.head;
 
-        let count = 0;
-        while(pointer){
+        let count = 1;
+
+        while(prev){
             if(count == index){
-                if(!next){
-                    pointer.next = node;
-                }else{
-                    
-                }
-
+                node.next = prev.next;
+                prev.next = node;
+                return;
+            }else{
+                count++;
+                prev = prev.next;
             }
         }
+    }
+
+    deleteAtIndex(index){
+        if(index == 0){
+            let toBeDeleted = this.head;
+            this.head = this.head.next;
+            toBeDeleted.next = null;
+            return true;
+        }
+
+        let prev = this.head;
+        let toBeDeleted = prev.next;
+
+        let count = 1;
+
+        while(toBeDeleted){
+            if(count == index){
+                prev.next = toBeDeleted.next;
+                toBeDeleted.next = null;
+                return true;
+            }else{
+                count++;
+                prev = prev.next;
+                toBeDeleted = toBeDeleted.next;
+            }
+        }
+        return false;
     }
 }
 
