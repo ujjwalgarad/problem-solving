@@ -1,6 +1,6 @@
 const Node = require('./Node');
 
-class LinkedList{
+class DoublyLinkedList{
     constructor(){
         this.head = null;
     }
@@ -26,23 +26,28 @@ class LinkedList{
     addAtHead(val){
         let node = new Node(val);
         node.next = this.head;
+        
+        if(this.head){
+            this.head.prev = node;
+        }
+        
         this.head = node;
     }
 
     addAtTail(val){
-        let pointer = this.head;
-
-        if(!pointer){
-            this.addAtHead(val);
-            return;
-        }
-
         let node = new Node(val);
-        while(pointer.next){
-            pointer = pointer.next;
-        }
 
-        pointer.next = node;
+        if(this.head){
+            let pointer = this.head;
+            while(pointer.next){
+                pointer = pointer.next;
+            }
+    
+            pointer.next = node;
+            node.prev = pointer;
+        }else{
+            this.head = node;
+        }
     }
 
     addAtIndex(index, val){
@@ -60,6 +65,7 @@ class LinkedList{
             if(count == index){
                 node.next = prev.next;
                 prev.next = node;
+                node.prev = prev;
                 return;
             }else{
                 count++;
@@ -69,9 +75,11 @@ class LinkedList{
     }
 
     deleteAtIndex(index){
+        debugger;
         if(index == 0){
             let toBeDeleted = this.head;
             this.head = this.head.next;
+            this.head.prev = null;
             toBeDeleted.next = null;
             return true;
         }
@@ -84,7 +92,13 @@ class LinkedList{
         while(toBeDeleted){
             if(count == index){
                 prev.next = toBeDeleted.next;
+                
+                if(toBeDeleted.next){
+                    toBeDeleted.next.prev = prev;
+                }
+                
                 toBeDeleted.next = null;
+                toBeDeleted.prev = null;
                 return true;
             }else{
                 count++;
@@ -96,4 +110,4 @@ class LinkedList{
     }
 }
 
-module.exports = LinkedList;
+module.exports = DoublyLinkedList;
